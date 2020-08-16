@@ -1,0 +1,24 @@
+<nav class="navbar navbar-light mb20">
+    <a class="navbar-brand" href="#">Daily Tasks Manager</a>
+    <button (click)="addTask()" class="btn btn-success my-2 my-sm-0" type="submit">Add Tasks</button>
+</nav>
+
+<div class="container">
+    <div class="row mb20">
+        <div class="col-12">
+            <p style="font-size: 40px;" [style.color]="percentageCompletedTasks < 33 ? 'red' : (percentageCompletedTasks > 66 ? 'green' : 'yellow')" class="text-right">{{ percentageCompletedTasks | number : '1.0-2' }}%</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 border-right-column">
+            <app-pending-tasks (deleteTaskEvent)="deleteTask($event)" (editTaskEvent)="editTask($event)" [tasks]="tasks.pending"></app-pending-tasks>
+        </div>
+        <div class="col-md-4 border-right-column">
+            <app-in-process-tasks (changeTaskStatus)="changeTaskStatus($event)" (deleteTaskEvent)="deleteTask($event)" (editTaskEvent)="editTask($event)" [tasks]="tasks.inProcess"></app-in-process-tasks>
+        </div>
+        <div class="col-md-4">
+            <app-completed-tasks (changeTaskStatus)="changeTaskStatus($event)" (deleteTaskEvent)="deleteTask($event)" (editTaskEvent)="editTask($event)" [tasks]="tasks.completed"></app-completed-tasks>
+        </div>
+    </div>
+    <app-add-edit-task (taskChanged)="getTasks()" #addEditTaskReference></app-add-edit-task>
+</div>

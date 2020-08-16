@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "daily-task-manager"
+    }
+  },
+  "defaultProject": "daily-task-manager",
+  "cli": {
+    "analytics": false
+  }
 }

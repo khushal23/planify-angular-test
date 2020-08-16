@@ -1,0 +1,19 @@
+<h4 class="text-center mb20">Pending</h4>
+<div>
+    <div class="list-group">
+        <a draggable [dragScope]="'pending'" *ngFor="let task of tasks; let i = index;" [dragData]="{ task: task, i: i, from: 'pending'}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="row task-row">
+                <div class="col-1">
+                    <span><i class="fa" [ngClass]="{'fa-arrow-down': task.priority == 'low', 'fa-arrow-up': task.priority == 'high', 'fa-arrow-right' : task.priority == 'normal'}" aria-hidden="true"></i></span>
+                </div>
+                <div class="col-8">
+                    <h5 class="text-center task-title mb-1">{{ task.title }}</h5>
+                </div>
+                <div class="text-right col-3">
+                    <span ><i (click)="ediTask(i)" style="margin-right: 8px;" class="fa fa-pencil" aria-hidden="true"></i><i (click)="deleteTask(i)" class="fa fa-trash" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+</div>

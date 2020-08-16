@@ -1,0 +1,55 @@
+<div class="modal fade" id="add-edit-task" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Edit Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form #f="ngForm" (ngSubmit)="saveTask(f)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input class="form-control" [(ngModel)]="title" required #titleError="ngModel" type="text"
+                            name="title">
+                        <div *ngIf="f.submitted && titleError.invalid" class="error text-red text-left pl-10">
+                            <div *ngIf="titleError.errors.required">Title is required.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input class="form-control" [(ngModel)]="description" required #descriptionError="ngModel"
+                            type="text" name="description">
+                        <div *ngIf="f.submitted && descriptionError.invalid" class="error text-red text-left pl-10">
+                            <div *ngIf="descriptionError.errors.required">Description is required.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="priority">Priority</label>
+                        <select [(ngModel)]="priority" name="priority" #priorityError="ngModel"
+                            class="form-control position-relative border-radius-50" required>
+                            <option value="">Select Priority</option>
+                            <option value="low">Low</option>
+                            <option value="normal">Normal</option>
+                            <option value="high">High</option>
+                        </select>
+                        <div *ngIf="f.submitted && priorityError.invalid" class="error text-red text-left pl-10">
+                            <div *ngIf="priorityError.errors.required">Priority is required.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Select Date</label>
+                        <dp-date-picker class="form-control" name="datepicker" [(ngModel)]="date"
+                            [config]="datePickerConfig"></dp-date-picker>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+.navbar-light {
+    background-color: #FFC107;
+}
+
+
+.border-right-column{
+    border-right: 2px solid blue;
+    min-height: 500px;
+}
